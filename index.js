@@ -3,14 +3,14 @@ var request = require('request');
 var cheerio = require('cheerio');
 const fs = require('fs');
 
-function getLegislatorEmails(name, url){
+function getLegislatorEmails(name, url) {
 	var output_data = [];
 	request(url, function (error, response, html) {
 	  if (!error && response.statusCode == 200) {
 	  	console.log('success loading', url);
 
 		var $ = cheerio.load(html);
-	    $('#contactTable tbody tr td:nth-child(5) a').each(function(i, element){
+	    $('#contactTable tbody tr td:nth-child(5) a').each(function(i, element) {
 	    	output_data.push($(this).text() );
 	    });
 
@@ -18,10 +18,9 @@ function getLegislatorEmails(name, url){
 	    	function(a, b) {
 			  var last_name_cmp = a.substr(a.indexOf('.') + 1).toLowerCase().localeCompare(b.substr(b.indexOf('.') + 1).toLowerCase() );
 
-			  if(last_name_cmp != 0){
+			  if (last_name_cmp != 0) {
 			  	return last_name_cmp;
-			  }
-			  else{
+			  } else {
 			  	return a.localeCompare(b);
 			  }
 			}
@@ -30,14 +29,13 @@ function getLegislatorEmails(name, url){
 	    console.log("For " + name + ", found: " + output_data.length);
 
 	    fs.writeFile("output/" + name + ".txt", output_data, function(err) {
-			if(err) {
+			if (err) {
 			    return console.log(err);
 			}
 
 			console.log("The file was saved: ", name);
 		}); 
-	  }
-	  else{
+	  } else {
 	  	console.log('error on loading: ' + url, error);
 	  }
 	});
