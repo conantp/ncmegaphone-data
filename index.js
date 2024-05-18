@@ -28,7 +28,7 @@ function getLegislatorEmails(name, url) {
 
 	    console.log("For " + name + ", found: " + output_data.length);
 
-	    fs.writeFile("output/" + name + ".txt", output_data, function(err) {
+	    fs.writeFile("output/" + name + ".txt", JSON.stringify(output_data), function(err) {
 			if (err) {
 			    return console.log(err);
 			}
