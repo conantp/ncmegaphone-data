@@ -1,2 +1,5 @@
 node_modules
 yarn-error*
+
+output/index.dryrun.html
+.DS_Store

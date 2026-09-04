@@ -5,8 +5,11 @@
   "author": "patrick@prcapps.com",
   "license": "gpl-3.0",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "fs": "^0.0.1-security",
-    "request": "^2.88.0"
-  }
+    "cheerio": "^1.0.0"
+  },
+  "scripts": {
+    "update": "node index.js",
+    "dry-run": "node index.js --dry-run"
+  },
+  "description": "Builds the NC Megaphone legislator email list from ncleg.gov"
 }
